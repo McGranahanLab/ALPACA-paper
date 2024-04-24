@@ -1,0 +1,130 @@
+#################
+# Main figures: #
+#################
+
+All generated figures can be found in 'figures' directory
+
+Schema:
+Figure number and description, script to generate the figure, name of the figure file.
+
+*****************************
+1. Overview and benchmarking of ALPACA Algorithm
+a) Cartoon
+b) Matching comparison: Fig1.ipynb, Fig1b_matching_comparison_boxplot.pdf
+c) Precision/Recall vs simple model: Fig1.ipynb, Fig1c_histograms_alpaca_simple_comparison.png
+d) Accuracy vs simple model: Fig1.ipynb, Fig1d_barplot_alpaca_simple_comparison.pdf
+e) Simulations Sankey plot: Fig1.ipynb, Fig1e_simulations_sankey.pdf
+f) Single Cell Heatmap: Fig1.ipynb, Fig1f_single_cell_S0noise0.1_A_example_heatmap.pdf, Fig1f_single_cell_S0noise0.1_B_example_heatmap.pdf
+g) Single Cell Sankey: Fig1.ipynb, Fig1g_SC_sankey.pdf
+*****************************
+
+
+*****************************
+2. ALPACA provides additional clone-level SCNA resolution
+a) CRUK0048
+Clone maps (left panel):
+Cartoon
+Locus sample level copy number (center):
+ADDRESOLUTION_plot_samples_clones.R,CRUK0048/CRUK0048_mphase_13.pdf,
+ALPACA copy numbers (right):
+ADDRESOLUTION_plot_samples_clones.R,CRUK0048/CRUK0048_alpaca_13_seeding.pdf,
+b) CRUK0022
+Clone maps (left panel):
+Cartoon
+Locus sample level copy number (center):
+ADDRESOLUTION_plot_samples_clones.R,CRUK0022/CRUK0022_mphase_12.pdf,
+ALPACA copy numbers (right):
+ADDRESOLUTION_plot_samples_clones.R,CRUK0022/CRUK0022_alpaca_12_seeding.pdf,
+*****************************
+
+
+*****************************
+3.ALPACA enables evolutionary ordering of subclonal SNV and SCNA events in primary NSCLC
+b) Pairwise comparisons, primary:
+i) LUAD pairwise, DRIVERORDERING_run_btm.R, LUAD_all_topfreqevents_pairwise.pdf
+ii) LUSC pairwise, DRIVERORDERING_run_btm.R, LUSC_all_topfreqevents_pairwise.pdf
+
+c) Relative ordering, primary:
+i) LUAD, DRIVERORDERING_run_btm.R, LUAD_all_topfreqevents_btm.pdf
+ii) LUSC, DRIVERORDERING_run_btm.R, LUSC_all_topfreqevents_btm.pdf
+
+
+
+4. ALPACA detects distinct patterns of clone copy number change in metastatic NSCLC
+a) Cartoon
+b) SCNA vs SNV distance, COEVOLUTION_plot_mut_cpn_rate.R, LUAD_constellation_cloneclass.pdf, LUSC_constellation_cloneclass.pdf, Other_constellation_cloneclass.pdf
+c) SCNA/SNV branch length: COEVOLUTION_compare_branch_lengths_combinedcohorts.R, prim_mets_snv_scna_branch_length.pdf
+d) Seeding vs nonseeding SCNA fraction: SEEDING_vs_nonseeding_plot_cross_genome_changes.R, frac_clones_gainloss_seeding_nonseedingprim.pdf
+e) Seeding vs nonseeding SCNA class: SEEDING_compare_seeding_non_seeding.R, seeding_vs_nonseeding_scnaevents_mrcassedintumFALSE.pdf
+f) Cartoon
+g) CCND1 locus: SEEDING_compare_cloneclass_events.R, chr11_mrca_seeding_nonseeding_cn_events_gain1.pdf
+h) Seeding vs nonseeding oncogenes: SEEDING_compare_cloneclass_events.R, onco_gains1_gene_bar_proponly.seeding_vs_non.pdf
+i) Seeding branch odds: SEEDING_compare_cloneclass_events.R, seedingBranchOdds_total_genelevelGeneClass.pdf
+j) Seeding polyclonal vs monoclonal: SURVIVAL_scnaith_diversity_pipeline.R, Fig4j_seedingClonality_vs_MeanNoSCNAs.scnaITH.pdf
+k) Seeding polyclonal vs monoclonal, tree level: SEEDING_compare_seeding_non_seeding.R, seedingClonality_scnaevents_treelevel_boxplot.pdf
+l) Extra/intrathoracic: SEEDING_compare_seeding_non_seeding.R, relapse_category_SCNABL_by_met_categories.pdf
+*****************************
+
+
+*****************************
+5. Clone copy number diversity predicts poor patient survival:
+a) Cartoon
+b) High vs Low diversity examples, Fig5b.ipynb,CRUK0717_A_high_diversity_heatmap.pdf,CRUK0003_A_low_diversity_heatmap.pdf
+c) Recurrence status vs CCD: SURVIVAL_scnaith_diversity_pipeline.R, recurrence_status_CCD.pdf
+d) Truncal seeding status vs CCD: SURVIVAL_scnaith_diversity_pipeline.R, truncal_seeding_CCD.pdf
+e) CCD categorical KM curve: SURVIVAL_scnaith_diversity_pipeline.R, kmplotCCD_cat.pdf
+f) CCD tertiles KM curve: SURVIVAL_scnaith_diversity_pipeline.R, kmplotCCD_tertiles.pdf
+g) MV cox-prop hazards: SURVIVAL_scnaith_diversity_pipeline.R, forestplot_CCD_by_sd_SCNAITHsample.noLNclones.TRACERxcovariates.pdf
+*****************************
+
+
+##########################
+# Supplementary figures: #
+##########################
+
+1. Benchmarking ALPACA
+a) Simulated cohort overview: Supplementary_fig1.ipynb, Suppfig1a_simulated_cohort_overview.pdf
+b) Single Cell clone proportions: Supplementary_fig1.ipynb, Suppfig1b_single_cell_clone_proportions.pdf
+c-d) ALPACA output heatmap: Supplementary_fig1.ipynb, Suppfig1c_LTXSIM127_A_example_heatmap.pdf, Suppfig1d_LTXSIM127_B_example_heatmap.pdf
+e-f) Simple model output heatmap: Supplementary_fig1.ipynb, Suppfig1e_LTXSIM127_A_example_heatmap_simple_model.pdf, Suppfig1f_LTXSIM127_B_example_heatmap_simple_model.pdf
+
+2. Detailed ALPACA results for primary tumour case CRUK0628
+a-b) ALPACA output heatmap: Supplementary_fig2.ipynb, Suppfig2a_CRUK0628_A_example_heatmap.pdf, Suppfig2b_CRUK0628_B_example_heatmap.pdf
+c) ALPACA output: copy number change between clones: Supplementary_fig2.ipynb, Suppfig2c_CRUK0628_example_cn_changes.pdf'
+
+3. Comparison of ALPACA LOH calls with CharmTSG scores
+a-c) CharmTSG scores: Supplementary_fig3.ipynb, Suppfig3a_correlation_with_charm_tsg_score_all_ALPACA_LOH_arm_level.png, Suppfig3b_correlation_with_charm_tsg_score_unique_ALPACA_LOH_arm_level.png, Suppfig3c_correlation_with_charm_tsg_score_region_LOH_arm_level.png
+
+4: Driver ordering analysis
+a) Subclones with event:
+top) LUAD, DRIVERORDERING_supplementaryanalysis.R, LUAD_sc_topevents_prop_sc_expansion_vsbg.pdf
+bottom) LUSC, DRIVERORDERING_supplementaryanalysis.R, LUAD_sc_topevents_prop_sc_expansion_vsbg.pdf
+b) Pairwise ordering, mets:
+i) LUAD pairwise, DRIVERORDERING_run_btm.R, LUAD_all_topfreqevents_pairwise.pdf
+ii) LUSC pairwise, DRIVERORDERING_run_btm.R, LUSC_all_topfreqevents_pairwise.pdf
+c) Relative ordering, mets:
+i) LUAD, DRIVERORDERING_run_btm.R, LUAD_all_topfreqevents_btm.pdf
+ii) LUSC, DRIVERORDERING_run_btm.R, LUSC_all_topfreqevents_btm.pdf
+
+5: ALPACA detects distinct patterns of clone copy number change in metastatic NSCLC
+a) LME model predicting #SCNAs per branch: COEVOLUTION_compare_branch_lengths_combinedcohorts.R, mets_lm_snv_scna_eventsnorm.pdf
+b) #SCNAs in metastatic clone classes: SEEDING_compare_seeding_non_seeding.R, cloneclass_scnaevents_mrcassedintumFALSE.pdf
+c) LME model predicting met clones: COEVOLUTION_compare_branch_lengths_combinedcohorts.R, mets_lm_snv_scna_predictingMetClones.pdf
+d) #SCNAs/#SNVs in seeding vs nonseeding: SEEDING_compare_seeding_non_seeding.R, seeding_vs_nonseeding_slope_raw_mrcassedintumFALSE.pdf
+e) Tumours with different seeding patterns:
+left) Example CRUK trees with different seeding patterns: COEVOLUTION_plot_mut_cpn_rate.R, CRUK*treeplot.pdf
+right) Pie chart of n tumours with different seeding patterns: SEEDING_compare_cloneclass_events.R, ntums_mrcanonseeding_pie.pdf
+f) Gene SCNAs in seeding vs nonseeding trajectories: SEEDING_compare_cloneclass_events.R, 
+top left) tsg_loh01_gene_bar_proponly.seeding_vs_non.pdf
+top right) tsg_loh_gene_bar_proponly.seeding_vs_non.pdf
+bottom left) onco_gains2_gene_bar_proponly.seeding_vs_non.pdf
+g) Cross-genome gene SCNAs in seeding vs nonseeding trajectories: SEEDING_compare_cloneclass_events.R, mrca_seeding_nonseeding_cn_events_crossgenome_allgenes_gain_1_loh_genes.pdf
+h) Extra/intrathoracic: SEEDING_compare_seeding_non_seeding.R, relapse_category_scnaevents_by_met_categories.pdf
+
+6: Clone copy number diversity predicts poor patient survival
+a) SCNA-ITH (sample) categorical KM curve: Fig5e_Suppfig6a_kmplotSCNA-ITH (sample)_cat.pdf
+b) SCNA-ITH (sample) tertiles KM curve: Fig5e_Suppfig6a_kmplotSCNA-ITH (sample)_tertiles.pdf
+c) LUAD CCD categorical KM curve: SURVIVAL_scnaith_diversity_pipeline.R, kmplot_CCD.noLNclones_ptnm.LUAD.pdf
+d) LUSC CCD categorical KM curve: SURVIVAL_scnaith_diversity_pipeline.R, kmplot_CCD.noLNclones_ptnm.LUSC.pdf
+e) SCNA-ITH (sample) vs CCD: SURVIVAL_scnaith_diversity_pipeline.R, scnaith_vs_CCD_stage.pdf
+f) SCNA-ITH (sample) vs CCD density: SURVIVAL_scnaith_diversity_pipeline.R, density_scnaith_CCD_stage_ridges.pdf

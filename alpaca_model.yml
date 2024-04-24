@@ -1,0 +1,31 @@
+name: alpaca_model
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+  - http://conda.anaconda.org/gurobi
+dependencies:
+  - bzip2=1.0.8
+  - ca-certificates=2024.2.2
+  - libffi=3.4.2
+  - libsqlite=3.45.3
+  - libzlib=1.2.13
+  - ncurses=6.4.20240210
+  - openssl=3.2.1
+  - pip=24.0
+  - python=3.9.13
+  - readline=8.2
+  - setuptools=69.5.1
+  - tk=8.6.13
+  - wheel=0.43.0
+  - xz=5.2.6
+  - pip:
+    - gurobipy==11.0.1
+    - kneed==0.8.5
+    - numpy==1.24.4
+    - pandas==2.0.3
+    - python-dateutil==2.9.0.post0
+    - pytz==2024.1
+    - scipy==1.10.1
+    - six==1.16.0
+    - tzdata==2024.1
