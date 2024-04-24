@@ -71,6 +71,7 @@ conda activate alpaca
 ```
 python bin/MODEL/run_example.py
 ```
+
 10. Expected output:
 Directory called 'output' will be created in the project directory and will contain the following files:
 ```
@@ -84,4 +85,4 @@ output
 ```
 Each of these files contain clone specific copy number for each clone and each segment in the provided example cohort (inputs can be found in input directory).
 
-11. To reproduce the figures navigate to project directory `cd ALPACA-paper` and execute `./run_all_figures.sh`. `alpaca_figures` or `alpaca` environemnts must be active.
+11. To reproduce the figures navigate to project directory `cd ALPACA-paper` and execute `./run_all_figures.sh`. Make sure that `alpaca_figures` or `alpaca` environemnts are active.
