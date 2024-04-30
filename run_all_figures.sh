@@ -44,7 +44,7 @@ Rscript bin/ANALYSIS/ADDRESOLUTION_plot_trees_clonemaps.R \
 
 # Supplementary Figure 2
 
-papermill bin/ANALYSIS/Fig2.ipynb bin/ANALYSIS/Supplemenrary_fig2_executed.ipynb
+papermill bin/ANALYSIS/Supplementary_fig2.ipynb bin/ANALYSIS/Supplementary_fig2_executed.ipynb
 
 ### FIGURE 3 ###
 
@@ -62,7 +62,7 @@ Rscript bin/ANALYSIS/DRIVERORDERING_run_btm.R \
 
 # Supplementary Figure 3
 
-papermill bin/ANALYSIS/Fig3.ipynb bin/ANALYSIS/Supplemenrary_fig3_executed.ipynb
+papermill bin/ANALYSIS/Supplementary_fig3.ipynb bin/ANALYSIS/Supplementary_fig3_executed.ipynb
 
 # Supplementary Figure 4a
 
