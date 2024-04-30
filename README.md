@@ -9,6 +9,7 @@ This repository contains:
 To test the model and reproduce the figures follow these steps:
 - [Using Conda](README.md#using-conda)
 - [Using Docker image](README.md#using-docker-image)
+- [Read this if you are using M1/M2 Apple Chip](README.md#apple_chips)
 
 ## Using Conda
 1. Open the terminal and choose a directory, for example:
@@ -68,7 +69,7 @@ conda env create -f alpaca.yml
 9. If creating environment from the yml files does not work, create a new environment and add required packages and libraries OR see below for [Using Docker image](#using_docker_image)
 
 ```
-conda create -n alpaca python=3.8 r-essentials
+conda create -n alpaca python=3.8 r-essentials --channel conda-forge
 conda activate alpaca
 pip install pandas #required for ALPACA model
 pip install kneed #required for ALPACA model
@@ -174,10 +175,6 @@ Each of these files contain clone specific copy number for each clone and each s
 docker build -f Dockerfile -t alpaca_container .
 ```
 
-If you are using **M1/M2 Apple Chip** run this command instead:
-```
-docker build -f Dockerfile_Apple_Chip -t alpaca_container .
-```
 
 4. Once the process is completed (~10 minutes) run the container:
 
@@ -233,6 +230,36 @@ docker cp alpaca_test:/app/output/example_cohort ./output
 docker stop alpaca_test
 docker rm alpaca_test
 docker rmi alpaca_container
+```
+
+## Apple Chips
+Docker images and conda environments might not work for Apple M1/M2 chips. In such case, install all the packages and libraries from the command line or R. Make sure to install at Python 3.9 and Gurobipy 11.
+```
+Python:
+pip install pandas
+pip install kneed
+pip install gurobipy==11
+# packages/libraries below are required to reproduce the figures:
+pip install papermill
+pip install jupyterlab
+pip install seaborn
+pip install plotly
+pip install pandas
+pip install kaleido
+pip install networkx
+
+R:
+data.table
+dplyr
+ggpubr
+survminer
+survival
+optparse
+genomicranges
+lmertest
+igraph
+tidytext
+ggridges
 ```
 
 ------
