@@ -1,8 +1,7 @@
 FROM ubuntu:latest
 
 # Update and install essential packages:
-RUN apt-get update && apt-get install -y wget ca-certificates bash
-
+RUN apt-get update && apt-get install -y wget ca-certificates bash tar
 # Install Miniconda:
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /miniconda.sh \
     && chmod +x /miniconda.sh \
@@ -12,16 +11,14 @@ RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -
 # Set path:
 ENV PATH="/opt/miniconda/bin:$PATH"
 
-# Copy project files:
 COPY alpaca.yml /app/alpaca.yml
 COPY run_all_figures.sh /app/run_all_figures.sh
 COPY bin /app/bin
-COPY output /app/output
 COPY input /app/input
-COPY _assets /app/_assets
+
 # Change working directory:
 WORKDIR /app
-
+RUN wget https://zenodo.org/records/11060928/files/alpaca_data.tar.gz && tar -xzvf alpaca_data.tar.gz
 # Create the Conda environment:
 RUN conda env create -f alpaca.yml
 
