@@ -165,12 +165,18 @@ Each of these files contain clone specific copy number for each clone and each s
 ------
 ## Using Docker image:
 - This procedure requires approximately 10GB of disk space to install containerised linux distribution
-1. Install docker: https://docs.docker.com/desktop/install/
+1. Install Docker and run Docker Desktop app: https://docs.docker.com/desktop/install/
 2. Navigate to project directory `cd ALPACA-paper`
 3. Build the image:
 
+
 ```
-docker build -t alpaca_container .
+docker build -f Dockerfile -t alpaca_container .
+```
+
+If you are using **M1/M2 Apple Chip** run this command instead:
+```
+docker build -f Dockerfile_Apple_Chip -t alpaca_container .
 ```
 
 4. Once the process is completed (~10 minutes) run the container:
