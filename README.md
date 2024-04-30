@@ -7,8 +7,8 @@ This repository contains:
 
 
 To test the model and reproduce the figures follow these steps:
-- [Using Conda](README.md#using-docker-image)
-- [Using Docker image](https://github.com/McGranahanLab/ALPACA-paper/blob/main/README.md#using-docker-image)
+- [Using Conda](README.md#using-conda)
+- [Using Docker image](README.md#using-docker-image)
 
 ## Using Conda
 1. Open the terminal and choose a directory, for example:
