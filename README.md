@@ -9,7 +9,7 @@ This repository contains:
 To test the model and reproduce the figures follow these steps:
 - [Using Conda](README.md#using-conda)
 - [Using Docker image](README.md#using-docker-image)
-- [Read this if you are using M1/M2 Apple Chip](README.md#apple_chips)
+- [Read this if you are using M1/M2 Apple Chip](README.md#apple-chips)
 
 ## Using Conda
 1. Open the terminal and choose a directory, for example:
