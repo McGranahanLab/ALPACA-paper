@@ -6,8 +6,8 @@
 # Run this script using the following command:
 # ./run_all_figures.sh
 
-if [[ ! "${PWD##*/}" == "ALPACA-paper" ]]; then
-  echo "Error: Script must be run from the 'ALPACA-paper' directory."
+if [[ "${PWD##*/}" != "ALPACA-paper" && "${PWD##*/}" != "app" ]]; then
+  echo "Error: Script must be run from project root directory."
   exit 1
 fi
 mkdir -p figures
