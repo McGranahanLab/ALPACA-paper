@@ -7,8 +7,8 @@ This repository contains:
 
 
 To test the model and reproduce the figures follow these steps:
-- [Using Conda](using_conda)
-- [Using Docker image](using_docker_image)
+- [Using Conda](#using_conda)
+- [Using Docker image](#using_docker_image)
 
 ## Using Conda
 1. Open the terminal and choose a directory, for example:
