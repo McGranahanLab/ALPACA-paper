@@ -85,4 +85,8 @@ output
 ```
 Each of these files contain clone specific copy number for each clone and each segment in the provided example cohort (inputs can be found in input directory).
 
-11. To reproduce the figures navigate to project directory `cd ALPACA-paper` and execute `./run_all_figures.sh`. Make sure that `alpaca_figures` or `alpaca` environemnts are active.
+11. To reproduce the figures navigate to project directory `cd ALPACA-paper` and execute `./run_all_figures.sh`. Make sure that `alpaca_figures` or `alpaca` environemnts are active. Figures will be placed in `ALPACA-paper/figures` directory.
+
+
+------
+This procedure has been tested in Linux (CentOS Linux 7, Linux 3.10.0-1160.62.1.el7.x86_64) and iOS (Sonoma 14.4.1) environments. For the full list of dependencies, please see the alpaca.yml file. The test run, including downloads, environment creation and making the figures takes approximately 1-2 hrs on a standard laptop.
