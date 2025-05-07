@@ -1,0 +1,6 @@
+_assets/*
+.history/*
+output/*
+figures/*
+bin/ANALYSIS/__pycache__/*
+alpaca_data.tar.gz

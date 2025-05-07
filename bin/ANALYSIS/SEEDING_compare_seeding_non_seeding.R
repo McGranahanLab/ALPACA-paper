@@ -214,21 +214,47 @@ g <- ggplot(metscluster_n_events[mrca_seeding_tum == FALSE],
         # axis.text.x = element_text(angle = 45, hjust = 1)
         axis.text.x = element_blank()
         ) +
-  stat_compare_means(comparisons = comps, label = "p.signif")+
+  stat_compare_means(comparisons = comps, label = "p.format")+
   labs(x = "Clone class", y = "No. copy number events")
 ggsave(
   filename = paste0(save_directory, "/cloneclass_scnaevents_mrcassedintumFALSE.pdf"),
   plot = g,
   width = 8.7,
-  height = 4.5
+  height = 6
 )
 # Also save in figures directory
 ggsave(
   filename = "figures/Suppfig5b_cloneclass_scnaevents_mrcassedintumFALSE.pdf",
   plot = g,
   width = 8.7,
-  height = 4.5
+  height = 6
 )
+
+library(dplyr)
+
+pvals_events <- lapply(comps, function(comp) {
+  group1 <- metscluster_n_events[mrca_seeding_tum == FALSE & clone_class == comp[1] & metric == "N. events", "value"]
+  group2 <- metscluster_n_events[mrca_seeding_tum == FALSE & clone_class == comp[2] & metric == "N. events", "value"]
+  test <- wilcox.test(group1$value, group2$value, exact = FALSE)
+  data.frame(group1 = comp[1], group2 = comp[2], p.value = format(test$p.value, digits = 3, scientific = TRUE))
+}) %>% bind_rows()
+print(pvals_events)
+
+pvals_gains <- lapply(comps, function(comp) {
+  group1 <- metscluster_n_events[mrca_seeding_tum == FALSE & clone_class == comp[1] & metric == "N. gains", "value"]
+  group2 <- metscluster_n_events[mrca_seeding_tum == FALSE & clone_class == comp[2] & metric == "N. gains", "value"]
+  test <- wilcox.test(group1$value, group2$value, exact = FALSE)
+  data.frame(group1 = comp[1], group2 = comp[2], p.value = format(test$p.value, digits = 3, scientific = TRUE))
+}) %>% bind_rows()
+print(pvals_gains)
+
+pvals_losses <- lapply(comps, function(comp) {
+  group1 <- metscluster_n_events[mrca_seeding_tum == FALSE & clone_class == comp[1] & metric == "N. losses", "value"]
+  group2 <- metscluster_n_events[mrca_seeding_tum == FALSE & clone_class == comp[2] & metric == "N. losses", "value"]
+  test <- wilcox.test(group1$value, group2$value, exact = FALSE)
+  data.frame(group1 = comp[1], group2 = comp[2], p.value = format(test$p.value, digits = 3, scientific = TRUE))
+}) %>% bind_rows()
+print(pvals_losses)
 
 ### Supplementary Figure 5d 
 # Comparing SCNA/SNV slopes in seeding vs non-seeding tumours:
