@@ -89,7 +89,7 @@ g <- ggplot(prim_met_edge_df[is_mrca == 'subclone'],
   geom_point(size = .8) +
   geom_smooth(method = 'lm', se = FALSE) +
   theme_cowplot() +
-  stat_cor() +
+  stat_cor(label = "p") +
   facet_wrap(~ cohort) +
   scale_colour_manual(values = tx_palette$histology_subtypes) +
   geom_abline(linetype = 'dashed', intercept = 0, slope = 1) +
@@ -108,6 +108,55 @@ dev.off()
 pdf("figures/Fig4c_prim_mets_snv_scna_branch_length.pdf", width = 7, height = 3.5)
 print(g)
 dev.off()
+
+# calculate p-values for correlation between mut and cn branch lengths separately to avoid R p<2.2e−16 values
+library(dplyr)
+LUAD = prim_met_edge_df[prim_met_edge_df$Histology == "LUAD"]
+LUSC = prim_met_edge_df[prim_met_edge_df$Histology == "LUSC"]
+OTHER = prim_met_edge_df[prim_met_edge_df$Histology == "Other"]
+
+
+pvals_cor_LUAD <- LUAD %>%
+  filter(is_mrca == 'subclone') %>%
+  group_by(cohort) %>%
+  summarise(
+    cor_test = list(cor.test(mut_branchlength_norm_subclonal, total_cn_events_norm_subclonal)),
+    .groups = 'drop'
+  ) %>%
+  mutate(
+    estimate = sapply(cor_test, function(x) x$estimate),
+    p_value = sapply(cor_test, function(x) format(x$p.value, digits = 3, scientific = TRUE))
+  ) %>%
+  select(cohort, estimate, p_value)
+print(pvals_cor_LUAD)
+
+pvals_cor_LUSC <- LUSC %>%
+  filter(is_mrca == 'subclone') %>%
+  group_by(cohort) %>%
+  summarise(
+    cor_test = list(cor.test(mut_branchlength_norm_subclonal, total_cn_events_norm_subclonal)),
+    .groups = 'drop'
+  ) %>%
+  mutate(
+    estimate = sapply(cor_test, function(x) x$estimate),
+    p_value = sapply(cor_test, function(x) format(x$p.value, digits = 3, scientific = TRUE))
+  ) %>%
+  select(cohort, estimate, p_value)
+print(pvals_cor_LUSC)
+
+pvals_cor_OTHER <- OTHER %>%
+  filter(is_mrca == 'subclone') %>%
+  group_by(cohort) %>%
+  summarise(
+    cor_test = list(cor.test(mut_branchlength_norm_subclonal, total_cn_events_norm_subclonal)),
+    .groups = 'drop'
+  ) %>%
+  mutate(
+    estimate = sapply(cor_test, function(x) x$estimate),
+    p_value = sapply(cor_test, function(x) format(x$p.value, digits = 3, scientific = TRUE))
+  ) %>%
+  select(cohort, estimate, p_value)
+print(pvals_cor_OTHER)
 
 #############################
 ### Linear model analysis ###
