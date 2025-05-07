@@ -295,7 +295,7 @@ g <- ggplot(mets_dist,
   geom_boxplot(outlier.shape = NA, alpha = .9) +
   scale_fill_manual(values = unlist(tx_palette$seedingClonality), name = 'Tumour seeding clonality') +
   theme_cowplot() +
-  stat_compare_means(aes(group = seedingClonality), label = "p.signif", hide.ns = TRUE, colour = "red", size = 6, tip.length = .01, label.y = 400) +
+  stat_compare_means(aes(group = seedingClonality), label = "p.format", hide.ns = TRUE, colour = "red", tip.length = .01, label.y = 400) +
   theme(legend.position = "bottom") +
   theme(axis.text = element_text(size = 14),
       axis.title = element_text(size = 16)) +
