@@ -536,6 +536,12 @@ plot_event_vs_bg_barplot(
   plot_height = 0.3 * length(unique(loh01_tsgs_final$gene_name)) 
 )
 
+# extract exact p-values:
+print(gains_oncogenes_final[fisher_pval < .05])
+print(gains2_oncogenes_final[fisher_pval < .05])
+print(loh_tsgs_final[fisher_pval < .05])
+print(loh01_tsgs_final[fisher_pval < .05])
+
 ###########################
 ### SPLIT LUAD AND LUSC ###
 ###########################
@@ -674,7 +680,7 @@ gene_seed_odds_g <- ggplot(gene_seeding_odds, aes(gene_class, gene_event_proport
         axis.ticks.y = element_blank(),
         axis.title.y = element_blank()) +
   scale_fill_manual(values = brewer.pal(3, "Paired"), name = 'Gene class') +
-  stat_compare_means(comparisons = comps, label = "p.signif", hide.ns = TRUE, label_colour = "red", size = 5, tip.length = .01)
+  stat_compare_means(comparisons = comps, label = "p.format", hide.ns = TRUE, label_colour = "red", size = 4, tip.length = .01)
 
 g_total_odds <- ggplot(event_fish_results,
   aes(forcats::fct_rev(event_type), odds_ratio, colour = geneclasscompare)) +
