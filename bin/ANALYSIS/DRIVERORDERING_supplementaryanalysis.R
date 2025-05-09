@@ -233,6 +233,9 @@ plot_df[, event_ordered := factor(event_name_sig, levels = event_order)]
 
 print(plot_df[pval < 0.05])
 
+# print just p values:
+print(plot_df[pval < 0.05,c('event_name_sig','pval', 'Event type')])
+
 ### Plot filled barplot, ordered by fraction and add n numbers
 colour_pal <- unlist(tx_palette$categorical)[1:length(sc_expansion_levels)]
 names(colour_pal) <- sc_expansion_levels
