@@ -155,13 +155,13 @@ in_data_surv <- preprocess_survival_data(all_patient_df, tum_df, metrics_list)
 out_pdf <- file.path(save_directory, "kmplot.pdf")
 group_vec <- paste0(metrics_list, "_cat")
 plot_km_bymedian(in_data_surv, group_vec, out_pdf)
-plot_km_bymedian(in_data_surv, group_vec, out_pdf = "figures/Fig5e_Suppfig6a_kmplot.pdf")
+plot_km_bymedian(in_data_surv, group_vec, out_pdf = "figures/Fig5e_Suppfig7a_kmplot.pdf")
 
 # Plot K-M by tertiles
 out_pdf <- file.path(save_directory, "kmplot.pdf")
 group_vec <- paste0(metrics_list, "_tertiles")
 plot_km_bytertiles(in_data_surv, group_vec, out_pdf)
-plot_km_bytertiles(in_data_surv, group_vec, out_pdf = "figures/Fig5f_Suppfig6b_kmplot.pdf")
+plot_km_bytertiles(in_data_surv, group_vec, out_pdf = "figures/Fig5f_Suppfig7b_kmplot.pdf")
 
 ### Run MV analysis
 metrics_list <- c("SCNA-ITH (sample)", "CCD")
@@ -186,7 +186,7 @@ metrics_list <- c("CCD")
 
 ### LUAD
 luad_in_data_surv <- preprocess_survival_data(all_patient_df[histology_lesion1 == "Invasive adenocarcinoma"], tum_df, metrics_list)
-out_pdf <- "figures/Suppfig6c_kmplot_LUAD.pdf"
+out_pdf <- "figures/Suppfig7c_kmplot_LUAD.pdf"
 group_vec <- paste0(metrics_list, "_cat")
 plot_km_bymedian(luad_in_data_surv, group_vec, out_pdf, title_start = "DFS - LUAD")
 # run_multivariate_analysis(in_data_surv = luad_in_data_surv, variables_cox = c("Age (+10 years)", "pTNM_stage", "PackYears (+10)", "sex", "adjuvant_tx", "CCD"), out_pdf = file.path(save_directory, "kmplot_CCD.noLNclones_ptnm.LUAD.pdf"))
@@ -194,7 +194,7 @@ plot_km_bymedian(luad_in_data_surv, group_vec, out_pdf, title_start = "DFS - LUA
 
 ### LUSC
 lusc_in_data_surv <- preprocess_survival_data(all_patient_df[histology_lesion1 == "Squamous cell carcinoma"], tum_df, metrics_list)
-out_pdf <- "figures/Suppfig6d_kmplot_LUSC.pdf"
+out_pdf <- "figures/Suppfig7d_kmplot_LUSC.pdf"
 group_vec <- paste0(metrics_list, "_cat")
 plot_km_bymedian(lusc_in_data_surv, group_vec, out_pdf, title_start = "DFS - LUSC")
 # run_multivariate_analysis(in_data_surv = lusc_in_data_surv, variables_cox = c("Age (+10 years)", "pTNM_stage", "PackYears (+10)", "sex", "adjuvant_tx", "CCD"), out_pdf = file.path(save_directory, "kmplot_CCD.noLNclones_ptnm.LUSC.pdf"))
@@ -293,7 +293,7 @@ g <- ggplot(in_data_surv, aes(`SCNA-ITH (sample)`, CCD)) +
 pdf(file.path(save_directory, "scnaith_vs_CCD_stage.pdf"), width = 8, height = 3.8)
 print(g)
 dev.off()
-pdf("figures/Suppfig6e_scnaith_vs_CCD_stage.pdf", width = 8, height = 3.8)
+pdf("figures/Suppfig7e_scnaith_vs_CCD_stage.pdf", width = 8, height = 3.8)
 print(g)
 dev.off()
 
@@ -322,7 +322,7 @@ g <- ggplot(metrics_dens_compare, aes(value, metric, fill = TNM_stage)) +
 pdf(file.path(save_directory, "density_scnaith_CCD_stage_ridges.pdf"), width = 5, height = 5)
 print(g)
 dev.off()
-pdf("figures/Suppfig6f_density_scnaith_CCD_stage_ridges.pdf", width = 5, height = 5)
+pdf("figures/Suppfig7f_density_scnaith_CCD_stage_ridges.pdf", width = 5, height = 5)
 print(g)
 dev.off()
 

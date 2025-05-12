@@ -224,7 +224,7 @@ ggsave(
 )
 # Also save in figures directory
 ggsave(
-  filename = "figures/Suppfig5b_cloneclass_scnaevents_mrcassedintumFALSE.pdf",
+  filename = "figures/Suppfig6b_cloneclass_scnaevents_mrcassedintumFALSE.pdf",
   plot = g,
   width = 8.7,
   height = 6
@@ -275,7 +275,7 @@ ggsave(
   height = 4
 )
 ggsave(
-  filename = "figures/Suppfig5d_seeding_vs_nonseeding_slope_raw_mrcassedintumFALSE.pdf",
+  filename = "figures/Suppfig6d_seeding_vs_nonseeding_slope_raw_mrcassedintumFALSE.pdf",
   plot = g,
   width = 3.,
   height = 4
@@ -359,7 +359,7 @@ ggsave(
   height = 4.5
 )
 ggsave(
-  filename = "figures/Suppfig5h_relapse_category_scnaevents_by_met_categories.pdf",
+  filename = "figures/Suppfig6h_relapse_category_scnaevents_by_met_categories.pdf",
   plot = g,
   width = 12,
   height = 4.5

@@ -225,7 +225,7 @@ pdf(file.path(save_directory, "mets_lm_snv_scna_eventsnorm.pdf"), width = 9, hei
 print(g)
 dev.off()
 # Also save in figures directory
-pdf("figures/Suppfig5a_mets_lm_snv_scna_eventsnorm.pdf", width = 9, height = 6)
+pdf("figures/Suppfig6a_mets_lm_snv_scna_eventsnorm.pdf", width = 9, height = 6)
 print(g)
 dev.off()
 
@@ -269,7 +269,7 @@ pdf(file.path(save_directory, "mets_lm_snv_scna_predictingMetClones.pdf"), width
 print(g)
 dev.off()
 # Also save in figures directory
-pdf("figures/Suppfig5c_mets_lm_snv_scna_predictingMetClones.pdf", width = 7, height = 5)
+pdf("figures/Suppfig6c_mets_lm_snv_scna_predictingMetClones.pdf", width = 7, height = 5)
 print(g)
 dev.off()
 

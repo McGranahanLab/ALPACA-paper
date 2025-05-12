@@ -38,11 +38,6 @@ opt_parser <- OptionParser(option_list=option_list)
 opt <- parse_args(opt_parser)
 print(opt)
 
-# TODO remove
-# opt$top_events_path <- '/nemo/project/proj-tracerx-lung/tctProjects/CN-CCF/publication/output/primary/primary_default/cohort_outputs/eventordering/LUSC_all_topfreqevents.csv'
-# opt$all_events_path <- '/nemo/project/proj-tracerx-lung/tctProjects/CN-CCF/publication/output/primary/primary_default/cohort_outputs/eventordering/LUSC_all_allevents.csv'
-# opt$cohort_tree_directory <- '/nemo/project/proj-tracerx-lung/tctProjects/CN-CCF/publication/_assets/tree_data/primary'
-# opt$bin_directory <- '/nemo/project/proj-tracerx-lung/tctProjects/CN-CCF/publication/bin'
 
 top_events_path <- opt$top_events_path
 all_events_path <- opt$all_events_path
@@ -153,9 +148,9 @@ sc_top_events <- sc_all_events[top_event == TRUE]
 top_events_clonalillu_fishout <- rbindlist(lapply(unique(sc_top_events$event_id), function(cur_event) {
 	print(cur_event)
 	event_df <- unique(sc_all_events[event_id == cur_event, .(max_ccf_expandedsubclone,
-																														n_clones_sc_expansion_pereventtype,
-																														n_clones_sc_expansion_pereventid,
-																														`Event type`)])
+															n_clones_sc_expansion_pereventtype,
+															n_clones_sc_expansion_pereventid,
+															`Event type`)])
 	cur_event_type <- event_df[, unique(`Event type`)]
 	if (!all(sc_expansion_levels %in% event_df$max_ccf_expandedsubclone)) {
 		missing_level <- sc_expansion_levels[!sc_expansion_levels %in% event_df$max_ccf_expandedsubclone]
@@ -177,12 +172,12 @@ top_events_clonalillu_fishout <- rbindlist(lapply(unique(sc_top_events$event_id)
 	ct <- apply(ct, c(1, 2), as.numeric)
 	ft <- fisher.test(ct)
 	ft_out <- data.table(`Event type` = cur_event_type,
-													event_id = cur_event,
-													odds_ratio = ft$estimate,
-													ci_lower = ft$conf.int[1],
-													ci_upper = ft$conf.int[2],
-													conf_level = attributes(ft$conf.int)[['conf.level']],
-													pval = ft$p.value)
+							event_id = cur_event,
+							odds_ratio = ft$estimate,
+							ci_lower = ft$conf.int[1],
+							ci_upper = ft$conf.int[2],
+							conf_level = attributes(ft$conf.int)[['conf.level']],
+							pval = ft$p.value)
 	return(ft_out)
 }))
 top_events_clonalillu_fishout[pval < 0.05, pval_signif := '*']
@@ -251,6 +246,6 @@ g1 <- ggplot(plot_df, aes(event_ordered, n_clones_sc_expansion_pereventid, fill 
 			strip.background = element_rect(fill = "transparent", colour = "black")) +
 	labs(x = 'Event ID', y = 'N. subclones with event', title = paste0(histo, " (subclonal events only)"))
 # Save into figures/ directory
-pdf(paste0('figures/suppfig4a_', histo, '_sc_topevents_prop_sc_expansion_vsbg.pdf'), width = 16, height = 4)
+pdf(paste0('figures/Suppfig5a_', histo, '_sc_topevents_prop_sc_expansion_vsbg.pdf'), width = 16, height = 4)
 print(g1)
 dev.off()

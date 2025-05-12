@@ -202,7 +202,7 @@ for (tum_id in tums_to_print) {
   names(colour_vec) <- colour_map[, clone]
   patient_id <- gsub("-Cluster.*", "", tum_id)
   # pdf(paste0(save_directory, '/', tum_id, "treeplot.pdf"), width = 4, height = 4)
-  pdf(paste0('figures/Suppfig5e', tum_id, "treeplot.pdf"), width = 4, height = 4)
+  pdf(paste0('figures/Suppfig6e', tum_id, "treeplot.pdf"), width = 4, height = 4)
   plot_tree(tree_edges = tum_tree,
           # vertex_size = vertex_size_vec,
           vertex_size = 25,

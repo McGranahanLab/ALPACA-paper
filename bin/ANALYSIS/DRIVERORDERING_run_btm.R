@@ -259,7 +259,7 @@ ggsave(filename = bt_outpath, plot = g, width = 10, height = 9, limitsize = FALS
 
 # Additionally save into figures/ directory
 bt_outpath_fig <- basename(bt_outpath)
-fig_prefix <- ifelse(cohort == "primary", "Fig3", "Suppfig4")
+fig_prefix <- ifelse(cohort == "primary", "Fig3", "Suppfig5")
 ggsave(filename = paste0('figures/', fig_prefix, '_', bt_outpath_fig), plot = g, width = 10, height = 9, limitsize = FALSE)
 
 # Plot legend:

@@ -157,7 +157,7 @@ print(pie)
 dev.off()
 
 # Additionally save in figures/ directory
-pdf("figures/Suppfig5e_ntums_mrcanonseeding_pie.pdf", width = 7, height = 7)
+pdf("figures/Suppfig6e_ntums_mrcanonseeding_pie.pdf", width = 7, height = 7)
 print(pie)
 dev.off()
 
@@ -260,7 +260,7 @@ ggsave(
 # Additionally save in figures/ directory
 ggsave(
   plot = gain_1_loh_seeding_non,
-  file = "figures/Suppfig5g_mrca_seeding_nonseeding_cn_events_crossgenome_allgenes_gain_1_loh_genes.pdf",
+  file = "figures/Suppfig6g_mrca_seeding_nonseeding_cn_events_crossgenome_allgenes_gain_1_loh_genes.pdf",
   width = 15, 
   height = 4
 )
@@ -511,7 +511,7 @@ plot_event_vs_bg_barplot(
 plot_event_vs_bg_barplot(
   event_df = gains2_oncogenes_final,
   plot_title = "Gains >2 in\noncogenes",
-  out_filename = "figures/Suppfig5f_onco_gains2_gene_bar_proponly.seeding_vs_non.pdf",
+  out_filename = "figures/Suppfig6f_onco_gains2_gene_bar_proponly.seeding_vs_non.pdf",
   colour_vec = mets_colour_vec,
   label_col = "no_tums_gain_2",
   plot_width = 3,
@@ -520,7 +520,7 @@ plot_event_vs_bg_barplot(
 plot_event_vs_bg_barplot(
   event_df = loh_tsgs_final,
   plot_title = "LOH in\nTSGs",
-  out_filename = "figures/Suppfig5f_tsg_loh_gene_bar_proponly.seeding_vs_non.pdf",
+  out_filename = "figures/Suppfig6f_tsg_loh_gene_bar_proponly.seeding_vs_non.pdf",
   colour_vec = mets_colour_vec,
   label_col = "no_tums_loh",
   plot_width = 3,
@@ -529,7 +529,7 @@ plot_event_vs_bg_barplot(
 plot_event_vs_bg_barplot(
   event_df = loh01_tsgs_final,
   plot_title = "LOH (0|1 state) in\nTSGs",
-  out_filename = "figures/Suppfig5f_tsg_loh01_gene_bar_proponly.seeding_vs_non.pdf",
+  out_filename = "figures/Suppfig6f_tsg_loh01_gene_bar_proponly.seeding_vs_non.pdf",
   colour_vec = mets_colour_vec,
   label_col = "no_tums_loh_01",
   plot_width = 3,
