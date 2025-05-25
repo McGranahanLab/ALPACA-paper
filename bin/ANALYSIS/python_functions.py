@@ -1,6 +1,9 @@
 import pandas as pd
 import numpy as np
 import json
+import matplotlib.pyplot as plt
+import seaborn as sns
+from matplotlib.colors import LinearSegmentedColormap
 
 def get_tree_edges(tree_paths):
     all_edges = list()
@@ -296,3 +299,37 @@ def get_driver_mutations(mut_table,tumour_id,chr_table_file):
     driver_mutations['clone'] = 'clone' + driver_mutations['PyCloneCluster_SC'].astype(str)
     driver_mutations['gene'] = driver_mutations['Hugo_Symbol']
     return driver_mutations[['tumour_id','abs_position','clone','gene']]
+
+
+def create_seaborn_colour_map(linSegCmap, number_of_colours):
+    colors = [linSegCmap(i) for i in np.linspace(0, 1, number_of_colours)]
+    sns_palette = sns.color_palette(colors)
+    return sns_palette
+
+def get_colourmap(max_val,testing=False,cn_type='total'):
+    min_val=0
+    positive_colors = np.array([1,0,0,1])
+    negative_colors = np.array([0,0,1,1])
+    white = np.array([1,1,1,1])
+    if cn_type == 'total':
+        colors = [
+            (0.0, negative_colors),  # Blue at 0
+            (1.0 / max_val, negative_colors),  # Blue at 1
+            (2.0 / max_val, white),  # White at 2
+            (1.0, positive_colors)   # Red at max_val
+            ]
+    else:
+        colors = [
+            (0.0, negative_colors),  # Blue at 0
+            (1.0 / max_val, white),  # White at 2
+            (1.0, positive_colors)   # Red at max_val
+            ]
+    custom_colormap = LinearSegmentedColormap.from_list('custom_map', colors)
+    # testing:
+    if testing:
+        data = np.random.uniform(low=min_val, high=max_val, size=(10,10))
+        data = np.array(range(min_val, max_val + 1)).reshape(1, -1)
+        plt.imshow(data, cmap=custom_colormap)
+        plt.colorbar()
+        plt.show()
+    return custom_colormap

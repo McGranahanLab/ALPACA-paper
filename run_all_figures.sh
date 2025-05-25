@@ -12,16 +12,17 @@ if [[ "${PWD##*/}" != "ALPACA-paper" && "${PWD##*/}" != "app" ]]; then
 fi
 mkdir -p figures
 ### FIGURE 1 ###
-# TODO add new experiments
 papermill bin/ANALYSIS/Fig1.ipynb bin/ANALYSIS/Fig1_executed.ipynb
 
 
-# Supplementary Figure 1 #TODO
-# TODO add TUSV-ext plots
+# Supplementary Figure 1 
+papermill bin/ANALYSIS/Supplementary_fig1_a_b_c.ipynb bin/ANALYSIS/Supplementary_fig1_a_b_c_executed.ipynb
+papermill bin/ANALYSIS/Supplementary_fig_1d.ipynb bin/ANALYSIS/Supplementary_fig_1d_executed.ipynb
+
+
 
 # Supplementary Figure 2
-
-papermill bin/ANALYSIS/Fig2.ipynb bin/ANALYSIS/Supplementary_fig2_executed.ipynb
+papermill bin/ANALYSIS/Supplementary_fig2.ipynb bin/ANALYSIS/Supplementary_fig2_executed.ipynb
 
 ### FIGURE 2 ###
 
@@ -140,6 +141,7 @@ Rscript bin/ANALYSIS/SEEDING_compare_cloneclass_events.R \
 # Figures 4j, 5b, 5c, 5d, 5e, 5f, 5g, Supplementary Figures 7a, 7b, 7c, 7d, 7e, 7f
 
 papermill bin/ANALYSIS/Fig5b.ipynb bin/ANALYSIS/Fig5b_executed.ipynb
+papermill bin/ANALYSIS/Supplementary_fig7.ipynb bin/ANALYSIS/Supplementary_fig7_executed.ipynb
 
 Rscript bin/ANALYSIS/SURVIVAL_scnaith_diversity_pipeline.R \
 --clone_distances_path output/primary/primary_default/cohort_outputs/edge_events.csv \

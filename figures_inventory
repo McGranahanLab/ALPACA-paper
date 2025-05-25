@@ -10,12 +10,13 @@ Figure number and description, script to generate the figure, name of the figure
 *****************************
 1. Overview and benchmarking of ALPACA Algorithm
 a) Cartoon
-b) Matching comparison: Fig1.ipynb, Fig1b_matching_comparison_boxplot.pdf
-c) Precision/Recall vs simple model: Fig1.ipynb, Fig1c_histograms_alpaca_simple_comparison.png
-d) Accuracy vs simple model: Fig1.ipynb, Fig1d_barplot_alpaca_simple_comparison.pdf
-e) Simulations Sankey plot: Fig1.ipynb, Fig1e_simulations_sankey.pdf
-f) Single Cell Heatmap: Fig1.ipynb, Fig1f_single_cell_S0noise0.1_A_example_heatmap.pdf, Fig1f_single_cell_S0noise0.1_B_example_heatmap.pdf
-g) Single Cell Sankey: Fig1.ipynb, Fig1g_SC_sankey.pdf
+b) Accuracy comparison mascote simulations: Fig1.ipynb, Fig1a_accuracy_comparison_boxplot.pdf
+c) Simulations Sankey plot: Fig1.ipynb, Fig1c_simulations_sankey.pdf
+d) HATCHET2+MEDICC2 vs ALPACA on simulations: Fig1.ipynb, Fig1d_HD_all.png, Fig1d_HD_MRCA.png, Fig1d_TVD.png
+e) HATCHET2+MEDICC2 vs ALPACA on single cell: Fig1.ipynb, Fig1e_HD.png, Fig1e_TVD.png
+f) Single Cell Heatmap LUNG: Fig1.ipynb, Fig1f_single_cell_lung.pdf,
+g) Single Cell Heatmap BREAST: Fig1.ipynb, Fig1g_single_cell_S0noise0.1_A_example_heatmap.pdf, Fig1g_single_cell_S0noise0.1_B_example_heatmap.pdf
+h) Single Cell Sankey: Fig1.ipynb, Fig1h_SC_sankey.pdf
 *****************************
 
 
@@ -82,20 +83,30 @@ g) MV cox-prop hazards: SURVIVAL_scnaith_diversity_pipeline.R, forestplot_CCD_by
 # Supplementary figures: #
 ##########################
 
-1. Benchmarking ALPACA
-a) Simulated cohort overview: Supplementary_fig1.ipynb, Suppfig1a_simulated_cohort_overview.pdf
-b) Single Cell clone proportions: Supplementary_fig1.ipynb, Suppfig1b_single_cell_clone_proportions.pdf
-c-d) ALPACA output heatmap: Supplementary_fig1.ipynb, Suppfig1c_LTXSIM127_A_example_heatmap.pdf, Suppfig1d_LTXSIM127_B_example_heatmap.pdf
-e-f) Simple model output heatmap: Supplementary_fig1.ipynb, Suppfig1e_LTXSIM127_A_example_heatmap_simple_model.pdf, Suppfig1f_LTXSIM127_B_example_heatmap_simple_model.pdf
+*****************************
+1. Validation of ALPACA assumptions
+a-c) Result of the tumour growth simulation model
+d) CONIPHER performance when SCNA affected segments are removed: Supplementary_fig1.ipynb, Suppfig1d_conipher_SCNA.pdf
 
-2. Detailed ALPACA results for primary tumour case CRUK0628
-a-b) ALPACA output heatmap: Supplementary_fig2.ipynb, Suppfig2a_CRUK0628_A_example_heatmap.pdf, Suppfig2b_CRUK0628_B_example_heatmap.pdf
-c) ALPACA output: copy number change between clones: Supplementary_fig2.ipynb, Suppfig2c_CRUK0628_example_cn_changes.pdf'
+*****************************
 
-3. Comparison of ALPACA LOH calls with CharmTSG scores
-a-c) CharmTSG scores: Supplementary_fig3.ipynb, Suppfig3a_correlation_with_charm_tsg_score_all_ALPACA_LOH_arm_level.png, Suppfig3b_correlation_with_charm_tsg_score_unique_ALPACA_LOH_arm_level.png, Suppfig3c_correlation_with_charm_tsg_score_region_LOH_arm_level.png
+2. Benchmarking ALPACA
+a) Simulated cohort overview: Supplementary_fig2.ipynb, Suppfig2a_simulated_cohort_overview.pdf 
+b-c) ALPACA output heatmap: Supplementary_fig2.ipynb, Suppfig2c_LTXSIM127_A_example_heatmap.pdf, Suppfig2d_LTXSIM127_B_example_heatmap.pdf
+d-e) Simple model output heatmap: Supplementary_fig2.ipynb, Suppfig2e_LTXSIM127_A_example_heatmap_simple_model.pdf, Suppfig2f_LTXSIM127_B_example_heatmap_simple_model.pdf # TODO rename
+f) ALPACA vs TUSV-ext, Hamming: Supplementary_fig2.ipynb, Suppfig2a_tusvext_HD.pdf
+g) ALPACA vs TUSV-ext, TVD: Supplementary_fig2.ipynb, Suppfig2a_tusvext_TVD.pdf
+h) Single Cell clone proportions: Supplementary_fig2.ipynb, Suppfig2b_single_cell_clone_proportions.pdf 
 
-4: Driver ordering analysis
+
+3. Detailed ALPACA results for primary tumour case CRUK0628
+a-b) ALPACA output heatmap: Supplementary_fig3.ipynb, Suppfig3a_CRUK0628_A_example_heatmap.pdf, Suppfig3b_CRUK0628_B_example_heatmap.pdf
+c) ALPACA output: copy number change between clones: Supplementary_fig3.ipynb, Suppfig3c_CRUK0628_example_cn_changes.pdf
+
+4. Comparison of ALPACA LOH calls with CharmTSG scores
+a-c) CharmTSG scores: Supplementary_fig4.ipynb, Suppfig3a_correlation_with_charm_tsg_score_all_ALPACA_LOH_arm_level.png, Suppfig4b_correlation_with_charm_tsg_score_unique_ALPACA_LOH_arm_level.png, Suppfig4c_correlation_with_charm_tsg_score_region_LOH_arm_level.png
+
+5: Driver ordering analysis
 a) Subclones with event:
 top) LUAD, DRIVERORDERING_supplementaryanalysis.R, LUAD_sc_topevents_prop_sc_expansion_vsbg.pdf
 bottom) LUSC, DRIVERORDERING_supplementaryanalysis.R, LUAD_sc_topevents_prop_sc_expansion_vsbg.pdf
@@ -106,7 +117,7 @@ c) Relative ordering, mets:
 i) LUAD, DRIVERORDERING_run_btm.R, LUAD_all_topfreqevents_btm.pdf
 ii) LUSC, DRIVERORDERING_run_btm.R, LUSC_all_topfreqevents_btm.pdf
 
-5: ALPACA detects distinct patterns of clone copy number change in metastatic NSCLC
+6: ALPACA detects distinct patterns of clone copy number change in metastatic NSCLC
 a) LME model predicting #SCNAs per branch: COEVOLUTION_compare_branch_lengths_combinedcohorts.R, mets_lm_snv_scna_eventsnorm.pdf
 b) #SCNAs in metastatic clone classes: SEEDING_compare_seeding_non_seeding.R, cloneclass_scnaevents_mrcassedintumFALSE.pdf
 c) LME model predicting met clones: COEVOLUTION_compare_branch_lengths_combinedcohorts.R, mets_lm_snv_scna_predictingMetClones.pdf
@@ -121,10 +132,11 @@ bottom left) onco_gains2_gene_bar_proponly.seeding_vs_non.pdf
 g) Cross-genome gene SCNAs in seeding vs nonseeding trajectories: SEEDING_compare_cloneclass_events.R, mrca_seeding_nonseeding_cn_events_crossgenome_allgenes_gain_1_loh_genes.pdf
 h) Extra/intrathoracic: SEEDING_compare_seeding_non_seeding.R, relapse_category_scnaevents_by_met_categories.pdf
 
-6: Clone copy number diversity predicts poor patient survival
+7: Clone copy number diversity predicts poor patient survival
 a) SCNA-ITH (sample) categorical KM curve: Fig5e_Suppfig6a_kmplotSCNA-ITH (sample)_cat.pdf
 b) SCNA-ITH (sample) tertiles KM curve: Fig5e_Suppfig6a_kmplotSCNA-ITH (sample)_tertiles.pdf
 c) LUAD CCD categorical KM curve: SURVIVAL_scnaith_diversity_pipeline.R, kmplot_CCD.noLNclones_ptnm.LUAD.pdf
 d) LUSC CCD categorical KM curve: SURVIVAL_scnaith_diversity_pipeline.R, kmplot_CCD.noLNclones_ptnm.LUSC.pdf
 e) SCNA-ITH (sample) vs CCD: SURVIVAL_scnaith_diversity_pipeline.R, scnaith_vs_CCD_stage.pdf
 f) SCNA-ITH (sample) vs CCD density: SURVIVAL_scnaith_diversity_pipeline.R, density_scnaith_CCD_stage_ridges.pdf
+g) runtime analysis: Supplementary_fig7.ipynb, primary_runtime_vs_features.pdf

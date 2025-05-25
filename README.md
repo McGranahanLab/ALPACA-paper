@@ -1,12 +1,11 @@
 # ALPACA-paper
 
-This repository contains: 
-1) the ALPACA model, 
-2) example script and data to test the model, 
-3) outputs required to reproduce the figures.
+This repository contains instruction for reproducing figures from ALPACA manuscript
 
 
-To test the model and reproduce the figures follow these steps:
+To test the ALPACA model, follow the instruction in https://github.com/McGranahanLab/ALPACA-model
+
+To reproduce the figures follow these steps:
 - [Using Conda](README.md#using-conda)
 - [Using Docker image](README.md#using-docker-image)
 - [Read this if you are using M1/M2 Apple Chip](README.md#apple-chips)
@@ -49,31 +48,17 @@ If you don't have `tar` command available, you can unpack the archive using 7-zi
 
 See instructions at: https://conda.io/projects/conda/en/latest/user-guide/install/index.html
 
-8. Create conda environment based on the supplied yaml files:
+8. Create conda environment based on the supplied yaml file:
 
-To just run the model:
-```
-conda env create -f alpaca_model.yml
-```
-
-To just recreate the figures:
 ```
 conda env create -f alpaca_figures.yml
-```
-
-Or to do both:
-```
-conda env create -f alpaca.yml
 ```
 
 9. If creating environment from the yml files does not work, create a new environment and add required packages and libraries OR see below for [Using Docker image](#using_docker_image)
 
 ```
-conda create -n alpaca python=3.8 r-essentials --channel conda-forge
-conda activate alpaca
-pip install pandas #required for ALPACA model
-pip install kneed #required for ALPACA model
-pip install gurobipy==11 #required for ALPACA model
+conda create -n alpaca_figures python=3.8 r-essentials --channel conda-forge
+conda activate alpaca_figures
 # packages/libraries below are required to reproduce the figures:
 pip install papermill
 pip install jupyterlab
@@ -102,66 +87,10 @@ q() # quit R
 ```
 10. Activate the environment:
 ```
-conda activate alpaca_model
-```
-or
-```
 conda activate alpaca_figures
 ```
-or
-```
-conda activate alpaca
-```
 
-11. Run the model for the example cohort:
-```
-python bin/MODEL/run_example.py
-```
-The example run should take less than 5 minutes and once it is finished you should see:
-```
-Optimal solution found (tolerance 1.00e-04)
-Best objective 0.000000000000e+00, best bound 0.000000000000e+00, gap 0.0000%
-
----------------------------------------------------------------------------
-Multi-objectives: solved in 0.07 seconds (0.02 work units), solution count 9
-
-Segment ALPACA_input_table_LTXSIM039_7_193245_2255974.csv done.
-Creating combined output
-Done
-
- _____ __    _____ _____ _____ _____
-|  _  |  |  |  _  |  _  |     |  _  |
-|     |  |__|   __|     |   --|     |
-|__|__|_____|__|  |__|__|_____|__|__|
-  /\⌒⌒⌒/\
-  (⦿   ⦿)
-  ( 'Y' )
-   (   )
-   (   )
-   (   )
-   (~ ~~~~~~~~~~)
-   ( ~ ~~   ~~  )
-   ( ~  ~ ~  ~  )
-   (~  ~~~~~   ~)
-    │ │     │ │
-    │ │     │ │
-
-```
-
-12. Expected output:
-Directory called 'output' will be created in the project directory and will contain the following files:
-```
-output
-└── example_cohort
-         ├── cohort_outputs
-         │         └── combined.csv
-         └── patient_outputs
-                 ├── final_LTXSIM039.csv
-                 └── final_LTXSIM001.csv
-```
-Each of these files contain clone specific copy number for each clone and each segment in the provided example cohort (inputs can be found in input directory).
-
-13. To reproduce the figures, navigate to project directory `cd ALPACA-paper` and execute `./run_all_figures.sh`. Make sure that `alpaca_figures` or `alpaca` environments are active. Figures will be placed in `ALPACA-paper/figures` directory.
+11. To reproduce the figures, navigate to project directory `cd ALPACA-paper` and execute `./run_all_figures.sh`. Make sure that `alpaca_figures` environment is active. Figures will be placed in `ALPACA-paper/figures` directory.
 
 ------
 ## Using Docker image:
@@ -196,26 +125,19 @@ source /root/.bashrc
 conda activate alpaca
 ```
 
-7. To run the model with the test cohort:
-
-```
-python bin/MODEL/run_example.py
-```
-See poin 11 above for the expexted output
-
-8. To recreate the figures run:
+7. To recreate the figures run:
 
 ```
 ./run_all_figures.sh
 ```
 
-9. To inspect the results of the model and figures, we need to export them from the container. First, exit the container by typing
+8. To inspect the results of the model and figures, we need to export them from the container. First, exit the container by typing
 
 ```
 exit
 ```
 
-10. You should be back in the project root directory 'ALPACA-paper'. Copy the example output and figures with the following commands:
+9. You should be back in the project root directory 'ALPACA-paper'. Copy the example output and figures with the following commands:
 
 ```
 mkdir -p figures
@@ -225,7 +147,7 @@ mkdir -p output
 docker cp alpaca_test:/app/output/example_cohort ./output
 ```
 
-11. Stop and remove the image from your system with:
+10. Stop and remove the image from your system with:
 ```
 docker stop alpaca_test
 docker rm alpaca_test
@@ -263,4 +185,4 @@ ggridges
 ```
 
 ------
-This procedure has been tested in Linux (CentOS Linux 7, Linux 3.10.0-1160.62.1.el7.x86_64) and macOS (Sonoma 14.4.1) environments. For the full list of dependencies, please see the alpaca.yml file. The test run, including downloads, environment creation and making the figures takes approximately 1-2 hrs on a standard laptop.
+This procedure has been tested in Linux (CentOS Linux 7, Linux 3.10.0-1160.62.1.el7.x86_64) and macOS (Sonoma 14.4.1) environments. For the full list of dependencies, please see the alpaca_figures.yml file. The test run, including downloads, environment creation and making the figures takes approximately 1-2 hrs on a standard laptop.
