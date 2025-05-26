@@ -28,19 +28,22 @@ git clone https://github.com/McGranahanLab/ALPACA-paper.git
 cd ALPACA-paper
 ```
 
-5. Download the data package (~670 mb) from https://zenodo.org/records/11060928/files/alpaca_data.tar.gz
+5. Download the data package (~670 mb) from https://zenodo.org/records/15519765
 ```
-curl -O https://zenodo.org/records/11060928/files/alpaca_data.tar.gz
+curl -O https://zenodo.org/records/11060928/files/_assets.tar.gz
+curl -O https://zenodo.org/records/11060928/files/output.tar.gz
 ```
 or
 ```
-wget https://zenodo.org/records/11060928/files/alpaca_data.tar.gz
+wget https://zenodo.org/records/11060928/files/_assets.tar.gz
+wget https://zenodo.org/records/11060928/files/output.tar.gz
 ```
 You can also download the file via the internet browser and place the file in the ALPACA-paper directory
 
 6. Extract the data to the ALPACA-paper directory
 ```
-tar -xzvf alpaca_data.tar.gz
+tar -xzvf _assets.tar.gz
+tar -xzvf output.tar.gz
 ```
 If you don't have `tar` command available, you can unpack the archive using 7-zip (https://www.7-zip.org)
 
