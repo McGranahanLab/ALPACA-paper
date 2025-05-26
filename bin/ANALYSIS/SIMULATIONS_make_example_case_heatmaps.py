@@ -27,14 +27,12 @@ def get_colour(cp_state, color_map):
     if cp_state >= 8:
         return f'rgb{tuple([c * 255 for c in color_map[-1]])}'
     else:
-        colours = {
-            0: (0, 0, 1), 1: (0.66, 0.66, 0.66), 2: color_map[0], 3: color_map[1], 4: color_map[2], 5: color_map[3], 6: color_map[4],
-            7: color_map[5]
-        }
-        return f'rgb{tuple([c * 255 for c in colours[cp_state]])}'    
+        return f'rgb{tuple([c * 255 for c in color_map[cp_state]])}'
 
 
-def plot_heat_map_with_true_solution(patient_output, allele, fig, tree_graph_df, color_map,number_of_clones,chr_table_file,plot_comparison=False):
+
+
+def plot_heat_map_with_true_solution(patient_output, allele, fig, tree_graph_df, color_map, number_of_clones, chr_table_file,plot_comparison=False):
     clones = tree_graph_df.sort_values('y_loc', ascending=True).clone
     clone_number = len(clones)
     chromosome_table = get_chr_table(chr_table_file)
@@ -42,8 +40,6 @@ def plot_heat_map_with_true_solution(patient_output, allele, fig, tree_graph_df,
     patient_output['predicted_cpn'] = patient_output[f'pred_CN_{allele}']
     patient_output = patient_output.merge(tree_graph_df)
     patient_output = patient_output.sort_values('y_loc')
-    color_map = sns.color_palette("rocket", 7, as_cmap=False)
-    color_map.reverse()
     for clone_index, clone_name in enumerate(clones):
         clone_df = patient_output[patient_output['clone'] == clone_name]
         i = int(tree_graph_df[tree_graph_df.clone == clone_name]['y_loc'].iloc[0])
@@ -55,7 +51,7 @@ def plot_heat_map_with_true_solution(patient_output, allele, fig, tree_graph_df,
             for x in segments_predicted:
                 if x not in segments_predicted_unique:
                     segments_predicted_unique.append(x)
-            cpn_color = get_colour(cp_state,color_map)
+            cpn_color = get_colour(cp_state, color_map)
             for rectangle in segments_predicted_unique:
                 segment = clone_df_cp_state[clone_df_cp_state['abs_start'] == rectangle[0][0]].segment.unique()[0]
                 fig.add_trace(go.Scatter(
@@ -76,7 +72,7 @@ def plot_heat_map_with_true_solution(patient_output, allele, fig, tree_graph_df,
     return fig
 
 
-def plot_error_track(patient_output, allele, fig, tree_graph_df,number_of_clones,plot_black_markers=True):
+def plot_error_track(patient_output, allele, fig, tree_graph_df,number_of_clones,plot_black_markers=True, color_map=None):
     if len(patient_output)==0:
         return fig
     clones = tree_graph_df.sort_values('y_loc', ascending=True).clone
@@ -84,8 +80,9 @@ def plot_error_track(patient_output, allele, fig, tree_graph_df,number_of_clones
     patient_output['predicted_cpn'] = patient_output[f'pred_CN_{allele}']
     patient_output = patient_output.merge(tree_graph_df)
     patient_output = patient_output.sort_values('y_loc')
-    color_map = sns.color_palette("rocket", 7, as_cmap=False)
-    color_map.reverse()
+    if color_map is None:
+        color_map = sns.color_palette("rocket", 7, as_cmap=False)
+        color_map.reverse()
     for clone_index, clone_name in enumerate(clones):
         clone_df = patient_output[patient_output['clone'] == clone_name]
         i = int(tree_graph_df[tree_graph_df.clone == clone_name]['y_loc'].iloc[0])
@@ -98,7 +95,7 @@ def plot_error_track(patient_output, allele, fig, tree_graph_df,number_of_clones
                 for x in segments_predicted:
                     if x not in segments_predicted_unique:
                         segments_predicted_unique.append(x)
-                cpn_color = get_colour(cp_state,color_map)
+                cpn_color = get_colour(cp_state, color_map)
                 for rectangle in segments_predicted_unique:
                     segment = clone_df_cp_state[clone_df_cp_state['abs_start'] == rectangle[0][0]].segment.unique()[0]
                     fig.add_trace(go.Scatter(
@@ -138,20 +135,22 @@ def coerce_to_alpaca_format(df, allele):
 
 
 class plot_heatmap_with_tree_compare_with_true_solution_publication:
-    def __init__(self, alpaca_output,input_data_directory, chr_table_file,wgd_clones, max_cpn_cap=99, allele='A', true_solution_df='', plot_comparison=False, sort_alleles=False):
+    def __init__(self, alpaca_output, input_data_directory, chr_table_file, wgd_clones, max_cpn_cap=99, allele='A', true_solution_df='', plot_comparison=False, sort_alleles=False, color_map=None):
         self.max_cpn_cap = max_cpn_cap
-        color_map = sns.color_palette("rocket", 7, as_cmap=False)
-        color_map.reverse()
+        if color_map is None:
+            color_map = sns.color_palette("rocket", 7, as_cmap=False)
+            color_map.reverse()
         font_size = 29
         wgd_annotation_font_size = 25
-        pred_true_font_size = 15 #12
-        chromosome_lables_font_size = 15
+        pred_true_font_size = 18 #12
+        chromosome_lables_font_size = 18
         region_number_font_size = 13 #12
         colorbar_font_size = 15
         annotation_font_size = 22
         # these size works only for selected example case
         width_mm = 620
-        height_mm = width_mm*0.62
+        height_mm = width_mm*0.7
+        # in first submission we used height_mm = width_mm*0.62
         DPI = 96
         w=int(width_mm * DPI / 25.4)
         h=int(height_mm * DPI / 25.4)
@@ -366,7 +365,7 @@ class plot_heatmap_with_tree_compare_with_true_solution_publication:
         if self.true_solution_df is not None:
             self.alpaca_with_true = compare_alpaca_to_true(alpaca=self.alpaca_output, true=self.true_solution_df, chr_table_file=chr_table_file,sort_alleles=sort_alleles)
             self.df_true = coerce_to_alpaca_format(self.alpaca_with_true, allele)
-            self.df_errors = coerce_to_alpaca_format(self.alpaca_with_true[self.alpaca_with_true.correct == False], allele)  # this has no chr column and '123_456' seg name
+            self.df_errors = coerce_to_alpaca_format(self.alpaca_with_true[self.alpaca_with_true.correct == False], allele)  
         else:
             self.df = self.alpaca_output
         y_limit = self.df[f'pred_CN_{allele}'].max()
@@ -377,7 +376,7 @@ class plot_heatmap_with_tree_compare_with_true_solution_publication:
         if plot_comparison:
             # self.fig = plotHeatMap(self.df_true.copy(), allele, self.fig, tree_graph_df, color_map,self.number_of_clones,plot_comparison=plot_comparison) # plots with plot_comparison = true will be plotted in the lower half of each clone row
             # add error highlight
-            self.fig = plot_error_track(self.df_errors, allele, self.fig, tree_graph_df, self.number_of_clones)
+            self.fig = plot_error_track(self.df_errors, allele, self.fig, tree_graph_df, self.number_of_clones,color_map=color_map)
         #rename columns to keep just Rx instead of the full name
         cp_table=cp_table.rename(columns={x:x.split('.R')[1] if 'LTX' in x else x for x in cp_table.columns})
         #cp_table.set_index('clone',inplace=True)
@@ -499,17 +498,21 @@ class plot_heatmap_with_tree_compare_with_true_solution_publication:
             name="     Copy number states:",
             marker=dict(size=10, color='white', symbol='circle-open', line=dict(color='white', width=3)),
         ), row=legend_row, col=1)
-        legend = {
-            '0': f'rgb{(0, 0, 255)}',
-            '1': f'rgb{(168, 168, 168)}',
-            '2': f'rgb{tuple([c * 255 for c in color_map[0]])}',
-            '3': f'rgb{tuple([c * 255 for c in color_map[1]])}',
-            '4': f'rgb{tuple([c * 255 for c in color_map[2]])}',
-            '5': f'rgb{tuple([c * 255 for c in color_map[3]])}',
-            '6': f'rgb{tuple([c * 255 for c in color_map[4]])}',
-            '7': f'rgb{tuple([c * 255 for c in color_map[5]])}',
-            '8+': f'rgb{tuple([c * 255 for c in color_map[-1]])}'
-        }
+        if len(color_map) > 7:
+            legend = {
+                '0': f'rgb{tuple([c * 255 for c in color_map[0]])}',
+                '1': f'rgb{tuple([c * 255 for c in color_map[1]])}',
+                '2': f'rgb{tuple([c * 255 for c in color_map[2]])}',
+                '3': f'rgb{tuple([c * 255 for c in color_map[3]])}',
+                '4': f'rgb{tuple([c * 255 for c in color_map[4]])}',
+                '5': f'rgb{tuple([c * 255 for c in color_map[5]])}',
+                '6': f'rgb{tuple([c * 255 for c in color_map[6]])}',
+                '7': f'rgb{tuple([c * 255 for c in color_map[7]])}',
+                '8+': f'rgb{tuple([c * 255 for c in color_map[-1]])}'
+            }
+        else:
+            legend = {
+                str(x): f'rgb{tuple([c * 255 for c in color_map[x]])}' for x in range(len(color_map))}
         l_group = ['2', '3',
                    '4', '5',
                    '6','7',
